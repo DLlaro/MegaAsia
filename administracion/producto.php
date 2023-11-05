@@ -72,7 +72,7 @@ require '../conexion.php';
                         <label for="">Precio:</label>
                             <input type="text" name="precio" class="form-control" />
                             <label for="">Stock:</label>
-                            <input type="text" name="stock" class="form-control" />
+                            <input type="number" name="stock" class="form-control" />
 
 
 
@@ -153,7 +153,7 @@ require '../conexion.php';
                         <label for="">Precio:</label>
                             <input type="text" name="precio" id="precio" class="form-control" />
                             <label for="">Stock:</label>
-                            <input type="text" name="stock" id="stock" class="form-control" />
+                            <input type="number" name="stock" id="stock" class="form-control" />
 
 
 

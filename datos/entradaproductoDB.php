@@ -143,7 +143,13 @@ if(isset($_POST['delete_entradaprod']))
 {
     $idNuevoProducto = mysqli_real_escape_string($con, $_POST['idNuevoProducto']);
     
-    $query = "DELETE from nuevoproducto WHERE idNuevoProducto='$idNuevoProducto'";
+    $query1 = "SELECT *  FROM nuevoproducto WHERE idNuevoProducto ='$idNuevoProducto'";
+    $query_run1 = mysqli_query($con, $query1);
+
+    $row = mysqli_fetch_assoc($query_run1);
+    $idProducto = $row['idProducto'];
+
+    $query = "DELETE from nuevoproducto WHERE idProducto='$idProducto'";
     $query_run = mysqli_query($con, $query);
 
     if($query_run)

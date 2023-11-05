@@ -77,19 +77,22 @@ $aa = mysqli_fetch_assoc($query_run);
                                 ?>
                             </tbody>
                         </table>
+                        <br>
                         </div>
                         </div>
                         </div>
 
-                        
-                        <div class="mb-3" style="width:10rem;">
+                        <div class="row">
+                        <div class="col-md-6" style="width:10rem;">
                             <label for="">ID de Producto:</label>
                             <input type="text" name="idProducto" id="idProducto" class="form-control" />
-
-                            <label for="">Cantidad Ingresada:</label>
-                            <input type="text" name="cantidadIngresada" id="cantidadIngresada" class="form-control" />
                         </div>
-                        
+                        <div class="col-md-6" style="width:10rem;">
+                            <label for="">Cantidad:</label>
+                            <input type="number" name="cantidadIngresada" id="cantidadIngresada" class="form-control" />
+                        </div>
+                           
+                        </div>
                         <div id="errorMessage" class="alert alert-warning d-none"></div>
                     </div>
                     <div class="modal-footer">
@@ -150,7 +153,9 @@ $aa = mysqli_fetch_assoc($query_run);
                             <thead style="background: #E8E8E8">
                                 <tr>
                                     <th style="width:10%;">idProducto</th>                           
-                                    <th style="width:50%;">Producto</th>
+                                    <th style="width:20%;">Producto</th>
+                                    <th style="width:20%;">Marca</th>
+                                    <th style="width:20%;">Proveedor</th>
                                     <th style="width:10%;">Cantidad Ingresada</th>
                                     <th style="width:20%"></th>
                                 </tr>
@@ -172,6 +177,8 @@ $aa = mysqli_fetch_assoc($query_run);
                                 <?php
                                 $query = "SELECT *, SUM(nuevoproducto.cantidadIngresadaAdd) as cant from nuevoproducto 
                                 inner join productos as p on p.idProducto = nuevoproducto.idProducto
+                                inner join marca as m on m.idMarca = p.idMarca
+                                inner join proveedor as prov on prov.idProveedor = p.idProveedor
                                 group by nuevoproducto.idProducto, p.producto";
                                 $query_run = mysqli_query($con, $query);
 
@@ -186,6 +193,13 @@ $aa = mysqli_fetch_assoc($query_run);
                                             <td>
                                                 <?= $row['producto'] ?>
                                             </td>
+                                            <td>
+                                                <?= $row['marca'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['proveedor'] ?>
+                                            </td>
+                                        
                                             <td>
                                                 <?= $row['cant'] ?>
                                             </td>
