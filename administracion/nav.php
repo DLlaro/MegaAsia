@@ -75,7 +75,7 @@ $nomb = $row1['nombres'];
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="dashboard.php" class="brand-link" style="text-decoration: none;">
+            <a href="panelControl.php" class="brand-link" style="text-decoration: none;">
                 <img src="../img/logotittle.png" alt="T-S" class="brand-image">
                 <strong>MEGA ASIA</strong>
             </a>
@@ -116,68 +116,72 @@ $nomb = $row1['nombres'];
                             </a>
                         </li>
 
-                        <li class="nav-item ">
-                            <a href="producto.php" class="nav-link <?php if ($page == 'Productos') {
-                                echo 'active';
-                            } ?>"><i class="fa-solid fa-box"></i>
-                                <p>Gestión de Productos </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a href="marca.php" class="nav-link <?php if ($page == 'Marca') {
-                                echo 'active';
-                            } ?>"><i class="fa-solid fa-boxes-stacked"></i>
-                                <p>Gestión de Marcas </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a href="categoria.php" class="nav-link <?php if ($page == 'Categoria') {
-                                echo 'active';
-                            } ?>"><i class="fa-solid fa-boxes-stacked"></i>
-                                <p>Gestión de Categorias </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a href="proveedor.php" class="nav-link <?php if ($page == 'Proveedor') {
-                                echo 'active';
-                            } ?>"><i class="fa-solid fa-user-tie"></i>
-                                <p>Gestión de Proveedores </p>
-                            </a>
-                        </li>
-
-
-
+                        
+                           
+                                <li class="nav-item ">
+                                <a href="producto.php" class="nav-link <?php if ($page == 'Productos') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-box"></i>
+                                    <p>Gestión de Productos </p>
+                                </a>
+                                </li>
+                           
+                           
+                                <li class="nav-item ">
+                                <a href="marca.php" class="nav-link <?php if ($page == 'Marca') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-box"></i>
+                                    <p>Gestión de Marcas </p>
+                                </a>
+                                </li>
+                            
+                           
+                                <li class="nav-item ">
+                                <a href="categoria.php" class="nav-link <?php if ($page == 'Categoria') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-box"></i>
+                                    <p>Gestión de Categorias </p>
+                                </a>
+                                </li>
+                          
+                           
+                                <li class="nav-item ">
+                                <a href="proveedor.php" class="nav-link <?php if ($page == 'Proveedor') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-user-tie"></i>
+                                    <p>Gestión de Proveedores </p>
+                                </a>
+                                </li>
+                            
+                       
 
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Calificación de Postulantes
+                                    Requerimientos
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="etapa1.php" class="nav-link <?php if ($page == 'Etapa1') {
-                                        echo 'active';
-                                    } ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Primera Etapa</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item ">
+                            <a href="req_entrada.php" class="nav-link <?php if ($page == 'Requerimiento_Entrada') {
+                                echo 'active';
+                            } ?>"><i class="fa-solid fa-dolly"></i>
+                                <p>Entrada de Productos</p>
+                            </a>
+                            </li>
+
                             </ul>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="etapa2.php" class="nav-link <?php if ($page == 'Etapa2') {
-                                        echo 'active';
-                                    } ?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Segunda Etapa</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item ">
+                            <a href="req_salida.php" class="nav-link <?php if ($page == 'Requerimiento_Salida') {
+                                echo 'active';
+                            } ?>"><i class="fa-solid fa-dolly"></i>
+                                <p>Salida de productos</p>
+                            </a>
+                        </li>
+
                             </ul>
                         </li>
 
@@ -195,8 +199,8 @@ $nomb = $row1['nombres'];
                             <li class="nav-item ">
                                 <a href="administrador.php" class="nav-link <?php if ($page == 'Administrador') {
                                     echo 'active';
-                                } ?>"><i class="fas fa-briefcase"></i>
-                                    <p>Administrador </p>
+                                } ?>"><i class="fas fa-user"></i>
+                                    <p>Administradores </p>
                                 </a>
                             </li>
 
@@ -204,7 +208,7 @@ $nomb = $row1['nombres'];
 
                         <br> <br> <br>
                         <li class="nav-item ">
-                            <a href="../datos/cerrarSesion.php" class="nav-link"><i class="fas fa-door-closed"></i>
+                            <a href="../datos/cerrarSesion.php" class="nav-link"><i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 <p>Cerrar Sesion </p>
                             </a>
                         </li>
