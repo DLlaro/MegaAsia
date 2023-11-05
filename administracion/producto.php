@@ -158,7 +158,7 @@ require '../conexion.php';
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn" style="background-color: #079ea1; color:white">Actualizar </button>
+                        <button type="submit" class="btn" style="background-color: #dc3036; color:white">Actualizar </button>
                     </div>
                 </form>
             </div>
