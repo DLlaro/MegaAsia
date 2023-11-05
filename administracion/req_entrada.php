@@ -113,7 +113,7 @@ require '../conexion.php';
 
                         <a href="req_entradanuevo.php"><button id="btnNuevoReq" type="button" class="btn float-end <?php if ($page == 'NuevoRequerimiento') {
                                 echo 'active'; 
-                            } ?>" style="background-color: #dc3036; color:white"><i class="fas fa-graduation-cap"></i> Crear Requerimiento Nuevo
+                            } ?>" style="background-color: #dc3036; color:white"><i class="fa-solid fa-plus"></i> Crear Requerimiento Nuevo
                         </button></a>
 
                         <!--<button type="button" class="btn float-end <?php if ($page == 'NuevoRequerimiento') {

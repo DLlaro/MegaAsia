@@ -80,7 +80,7 @@ require '../conexion.php';
                     <div class="card-body">
 
                         <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
-                            data-bs-target="#administradorAddModal"><i class="fas fa-graduation-cap"></i> Agregar 
+                            data-bs-target="#administradorAddModal"><i class="fa-solid fa-plus"></i> Agregar 
                             Administrador
                         </button>
                         <br>
@@ -93,7 +93,31 @@ require '../conexion.php';
                                     <th style="width:40%;"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <style>
+                                #tablahover td{
+                                   
+                                   justify-content: center;
+                                   align-items: center;
+                                    
+                                }
+                                #tablahover tr:hover{
+                                    transition: 0.2s;
+                                    background-color: #C9C9C9;
+                                }
+                            </style>
+                             <style>
+                                #tablahover td{
+                                   
+                                   justify-content: center;
+                                   align-items: center;
+                                    
+                                }
+                                #tablahover tr:hover{
+                                    transition: 0.2s;
+                                    background-color: #C9C9C9;
+                                }
+                            </style>
+                            <tbody id="tablahover">
                                 <?php
                                 $query = "SELECT * FROM administrador";
                                 $query_run = mysqli_query($con, $query);

@@ -184,24 +184,36 @@ require '../conexion.php';
                     <div class="card-body">
 
                         <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
-                            data-bs-target="#productoAddModal"><i class="fas fa-graduation-cap"></i> Agregar Producto
+                            data-bs-target="#productoAddModal"><i class="fa-solid fa-plus"></i> Agregar Producto
                         </button>
                         <br>
                         <table id="myTable" class="table text-center table-responsive" style="width:100%; font-size: 12px;">
                             <thead>
                                 <tr>
-                                    <th style="width:20%;">idProducto</th>
-                                    <th style="width:10%;">Producto</th>
-                                    <th style="width:20%;">idMarca</th>
-                                    <th style="width:20%;">idCategoria</th>
-                                    <th style="width:20%;">idProveedor</th>
+                                    <th style="width:10%;">idProducto</th>
+                                    <th style="width:20%;">Producto</th>
+                                    <th style="width:15%;">idMarca</th>
+                                    <th style="width:15%;">idCategoria</th>
+                                    <th style="width:15%;">idProveedor</th>
                                     <th style="width:20%;">Precio</th>
                                     <th style="width:20%;">Stock</th>
                                     <th style="width:20%;">Estado</th>
                                     <th style="width:20%;"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <style>
+                                #tablahover td{
+                                   
+                                   justify-content: center;
+                                   align-items: center;
+                                    
+                                }
+                                #tablahover tr:hover{
+                                    transition: 0.2s;
+                                    background-color: #C9C9C9;
+                                }
+                            </style>
+                            <tbody id="tablahover">
                                 <?php
                                 $query = "SELECT idProducto,producto,marca.marca,categoria.categoria,proveedor.proveedor,precio,stock,productos.estado FROM `productos`
                                 INNER JOIN marca on marca.idMarca=productos.idMarca
