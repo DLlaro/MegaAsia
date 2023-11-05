@@ -50,7 +50,6 @@ $nomb = $row1['nombres'];
 
 <body class="hold-transition sidebar-mini sidebar-minicontrol-sidebar-slide-open layout-fixed layout-navbar-fixed">
     <div class="wrapper">
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -185,7 +184,7 @@ $nomb = $row1['nombres'];
                             </ul>
                         </li>
 
-                        <?php if ($idAdministrador == '1') {
+                        <?php if ($idAdministrador == '1' || $idAdministrador=='2') {
                             ?>
 
                             <li class="nav-item ">
