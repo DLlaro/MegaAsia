@@ -32,6 +32,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM marca where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idMarca"  class="form-control">
+                            <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -43,6 +44,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM categoria where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idCategoria" class="form-control">
+                            <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -54,6 +56,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM proveedor where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idProveedor" class="form-control">
+                                <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -92,12 +95,12 @@ require '../conexion.php';
     <div class="modal fade" id="productoEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:#dc3036">
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="updateProducto">
-                    <div class="modal-body">
+                    <div class="modal-body row">
                         <div id="errorMessageUpdate" class="alert alert-warning d-none"></div>
 
                         <input type="hidden" name="idProducto" id="idProducto" />
@@ -110,6 +113,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM marca where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idMarca" id="idMarca" class="form-control">
+                            <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -121,6 +125,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM categoria where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idCategoria" id="idCategoria" class="form-control">
+                            <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
@@ -132,6 +137,7 @@ require '../conexion.php';
                             $query = "SELECT * FROM proveedor where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idProveedor" id="idProveedor" class="form-control">
+                            <option value=""></option>
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
