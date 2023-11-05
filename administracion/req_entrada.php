@@ -23,7 +23,7 @@ require '../conexion.php';
 
                     <div class="row">
 
-                     <div class="table-responsive">
+                     <div class="table-responsive col-md-6">
                                     <table id="Table" class="table text-center" style="width:100%; font-size: 12px; ">
                                         <tbody>
                                             <?php
@@ -36,6 +36,64 @@ require '../conexion.php';
                                                     <tr>
                                                         <td>
                                                             <b>TOTAL DE REQUERIMIENTOS DE ENTRADA</b>
+                                                        </td>
+                                                        <td>
+                                                            <b>
+                                                                <?= $row['total'] ?>
+                                                            </b>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="table-responsive col-md-6">
+                                    <table id="Table" class="table text-center" style="width:100%; font-size: 12px; ">
+                                        <tbody>
+                                            <?php
+                                            $query = "SELECT count(idReq_Entrada) as total FROM `req_entrada` where 
+                                            estado=1";
+                                            $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_run) > 0) {
+                                                foreach ($query_run as $row) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <b>REQUERIMIENTOS DE ENTRADA ACTIVOS</b>
+                                                        </td>
+                                                        <td>
+                                                            <b>
+                                                                <?= $row['total'] ?>
+                                                            </b>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="table-responsive col-md-6">
+                                    <table id="Table" class="table text-center" style="width:100%; font-size: 12px; ">
+                                        <tbody>
+                                            <?php
+                                            $query = "SELECT count(idReq_Entrada) as total FROM `req_entrada` where
+                                            estado=0";
+                                            $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_run) > 0) {
+                                                foreach ($query_run as $row) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <b>REQUERIMIENTOS DE ENTRADA INACTIVOS</b>
                                                         </td>
                                                         <td>
                                                             <b>
