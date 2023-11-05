@@ -72,11 +72,12 @@ if(isset($_POST['save_enprod']))
     if (mysqli_num_rows($query_run1) > 0) {
         foreach ($query_run1 as $row) {
             $det_idProducto = $row['idProducto'];
+            $det_cantidadIngresadaAdd = $row['cantidadIngresadaAdd']; 
             //$det_cantidadIngresadaAdd = $row['cantidadIngresadaAdd'];
 
-            for ($i = 0; $i < $contador; $i++) {
-                $query3 = "INSERT INTO det_req_entrada (idProducto,idReq_Entrada) 
-                VALUES ('$det_idProducto','$last_id')";
+            for ($i = 0; $i < 1; $i++) {
+                $query3 = "INSERT INTO det_req_entrada (idProducto,idReq_Entrada, cantidadIngresada) 
+                VALUES ('$det_idProducto','$last_id','$det_cantidadIngresadaAdd')";
                 $query_run3 = mysqli_query($con, $query3);
             }
         }
