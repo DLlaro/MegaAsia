@@ -110,7 +110,7 @@ $pdf->Cell(40, 8, 'PROVEEDOR', 1, 0, 'C', true);
 $pdf->Cell(30, 8, 'CANTIDAD', 1, 0, 'C', true);
 $i=1;
 
-$query1 = "SELECT *, COUNT(idDet_Req_Entrada) AS cantidad_reqentrada FROM det_req_entrada   
+$query1 = "SELECT * FROM det_req_entrada   
 INNER JOIN productos ON productos.idProducto = det_req_entrada.idProducto
 INNER JOIN marca on marca.idMarca = productos.idMarca
 INNER JOIN proveedor on proveedor.idProveedor = productos.idProveedor
@@ -134,7 +134,7 @@ if (mysqli_num_rows($query_run1) > 0) {
         $pdf->Cell(50, 8, $reqen['producto'], 1, 0, 'C', true);
         $pdf->Cell(50, 8, $reqen['marca'], 1, 0, 'C', true);
         $pdf->Cell(40, 8, $reqen['proveedor'], 1, 0, 'C', true);
-        $pdf->Cell(30, 8, $reqen['cantidad_reqentrada'], 1, 0, 'C', true);
+        $pdf->Cell(30, 8, $reqen['cantidadIngresada'], 1, 0, 'C', true);
         $i++;
     }
 }
