@@ -86,20 +86,33 @@ require '../conexion.php';
                     <div class="card-body">
 
                         <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
-                            data-bs-target="#proveedorAddModal"><i class="fas fa-graduation-cap"></i> Agregar Proveedor
+                            data-bs-target="#proveedorAddModal"><i class="fa-solid fa-plus"></i> Agregar Proveedor
                         </button>
                         <br>
                         <table id="myTable" class="table text-center table-responsive" style="width:100%; font-size: 12px;">
                             <thead>
                                 <tr>
-                                    <th style="width:20%;">idProveedor</th>
-                                    <th style="width:10%;">Proveedor</th>
+                                    <th style="width:10%;">idProveedor</th>
+                                    <th style="width:20%;">Proveedor</th>
                                     <th style="width:20%;">Descripcion</th>
                                     <th style="width:20%;">Estado</th>
                                     <th style="width:20%;"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <style>
+                                #tablahover td{
+                                   
+                                   justify-content: center;
+                                   align-items: center;
+                                    
+                                }
+                                #tablahover tr:hover{
+                                    transition: 0.2s;
+                                    background-color: #C9C9C9;
+                                }
+                            </style>
+
+                            <tbody id="tablahover">
                                 <?php
                                 $query = "SELECT * FROM proveedor";
                                 $query_run = mysqli_query($con, $query);

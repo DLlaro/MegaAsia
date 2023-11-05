@@ -142,7 +142,7 @@ $aa = mysqli_fetch_assoc($query_run);
                     <br>
 
                             <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
-                data-bs-target="#entradaproductoAddModal"><i class="fas fa-graduation-cap"></i> Agregar Productos
+                data-bs-target="#entradaproductoAddModal"><i class="fa-solid fa-plus"></i> Agregar Productos
                 </button>
                 <br>
 
@@ -220,7 +220,7 @@ $aa = mysqli_fetch_assoc($query_run);
 
                    <div id="errorMessage" class="alert alert-warning d-none"></div>
 
-                    <button type="button" id="addreqentradaBtn" class="btn float-end btn-success"><i class="fas fa-graduation-cap"></i> Asignar Productos a Requerimiento
+                    <button type="button" id="addreqentradaBtn" class="btn float-end btn-success"><i class="fa-solid fa-check"></i> Asignar Productos a Requerimiento
                 </button>
                 <!--   Card de Admin -->
                 </form>
