@@ -134,15 +134,30 @@ require '../conexion.php';
 
 
                                             <td>
-                                                <button type="button" value="<?= $row['idCategoria']; ?>"
-                                                    class="restoreCategoriaBtn btn btn-secondary btn-sm"><i
-                                                        class="fa-solid fa-undo"></i></button>
+                                            <?php
+                                                if ($row['estado'] == 1) {
+                                                ?>
+                                                
                                                 <button type="button" value="<?= $row['idCategoria']; ?>"
                                                     class="editCategoriaBtn btn btn-success btn-sm"><i
                                                         class="fa-solid fa-edit"></i></button>
                                                 <button type="button" value="<?= $row['idCategoria']; ?>"
                                                     class="deleteCategoriaBtn btn btn-danger btn-sm"><i
                                                         class="fa-solid fa-trash"></i></button>
+                                                        <?php }
+                                                ?>
+
+                                                <?php
+                                                if ($row['estado'] == 0) {
+                                                ?>
+                                                 <button type="button" value="<?= $row['idCategoria']; ?>"
+                                                    class="restoreCategoriaBtn btn btn-secondary btn-sm"><i
+                                                        class="fa-solid fa-undo"></i></button>
+
+
+                                                <?php }
+                                                ?>
+
                                             </td>
                                         </tr>
                                         <?php
@@ -190,7 +205,8 @@ require '../conexion.php';
                     alertify.set('notifier', 'position', 'top-right');
                     alertify.success(res.message);
 
-                    $('#myTable').load(location.href + " #myTable");
+                    //$('#myTable').load(location.href + " #myTable");
+                    location.reload();
 
                 } else if (res.status == 500) {
                     alert(res.message);
@@ -253,7 +269,8 @@ require '../conexion.php';
                     $('#categoriaEditModal').modal('hide');
                     $('#updateCategoria')[0].reset();
 
-                    $('#myTable').load(location.href + " #myTable");
+                    //$('#myTable').load(location.href + " #myTable");
+                    location.reload();
 
                 } else if (res.status == 500) {
                     alert(res.message);
@@ -285,7 +302,8 @@ require '../conexion.php';
                         alertify.set('notifier', 'position', 'top-right');
                         alertify.success(res.message);
 
-                        $('#myTable').load(location.href + " #myTable");
+                        //$('#myTable').load(location.href + " #myTable");
+                    location.reload();
                     }
                 }
             });
@@ -314,7 +332,8 @@ require '../conexion.php';
                         alertify.set('notifier', 'position', 'top-right');
                         alertify.success(res.message);
 
-                        $('#myTable').load(location.href + " #myTable");
+                        //$('#myTable').load(location.href + " #myTable");
+                    location.reload();
                     }
                 }
             });
