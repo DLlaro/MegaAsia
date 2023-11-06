@@ -175,7 +175,7 @@ $nomb = $row1['nombres'];
                             </ul>
                             <ul class="nav nav-treeview">
                             <li class="nav-item ">
-                            <a href="req_salida.php" class="nav-link <?php if ($page == 'Requerimiento_Salida') {
+                            <a href="not_salida.php" class="nav-link <?php if ($page == 'Nota_Salida') {
                                 echo 'active';
                             } ?>"><i class="fa-solid fa-dolly"></i>
                                 <p>Salida de productos</p>
