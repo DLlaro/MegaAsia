@@ -1,5 +1,5 @@
 <?php
-$page = 'Nuevo Requerimiento';
+$page = 'Nueva NotaSalida';
 include_once 'nav.php';
 require '../conexion.php';
 
@@ -16,15 +16,15 @@ $aa = mysqli_fetch_assoc($query_run);
 <section class="content">
 
     <!-- Add Usuario -->
-    <div class="modal fade" id="entradaproductoAddModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="salidaproductoAddModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Añadir Productos al Requerimiento</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Añadir Productos a la Nota de Salida</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="saveentrada">
+                <form id="savesalida">
                     <div class="modal-body row">
 
                      
@@ -68,6 +68,7 @@ $aa = mysqli_fetch_assoc($query_run);
                                             <td>
                                                 <?=$row['stock']?>
                                             </td>
+
                                         </tr>
                                         <?php
                                     }
@@ -81,15 +82,14 @@ $aa = mysqli_fetch_assoc($query_run);
                         </div>
 
                         <div class="row">
-                        <div class="col-md-6" style="width:10rem;">
-                            <label for="">ID de Producto:</label>
-                            <input type="text" name="idProducto" id="idProducto" class="form-control" />
-                        </div>
-                        <div class="col-md-6" style="width:10rem;">
-                            <label for="">Cantidad:</label>
-                            <input type="number" name="cantidadIngresada" id="cantidadIngresada" class="form-control" />
-                        </div>
-                           
+                            <div class="col-md-6" style="width:10rem;">
+                                <label for="">ID de Producto:</label>
+                                <input type="text" name="idProducto" id="idProducto" class="form-control" />
+                            </div>
+                            <div class="col-md-6" style="width:10rem;">
+                                <label for="">Cantidad:</label>
+                                <input type="number" name="cantidadIngresada" id="cantidadIngresada" class="form-control" />
+                            </div>
                         </div>
                         <div id="errorMessage" class="alert alert-warning d-none"></div>
                     </div>
@@ -108,7 +108,7 @@ $aa = mysqli_fetch_assoc($query_run);
                 <!--   Card de Admin -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h1 class="card-title" style="font-size: 25px;">Nuevo Requerimiento de Entrada</h1>
+                        <h1 class="card-title" style="font-size: 25px;">Nuevo Nota de Salida</h1>
                     </div>
                     <div class="card-body">
 
@@ -128,11 +128,11 @@ $aa = mysqli_fetch_assoc($query_run);
                             </select>
                             </div>
                 
-                        <blockquote style="font-size: 20px;background-color:#E8E8E8">Ingresar Productos a Requerimiento: </blockquote>
+                        <blockquote style="font-size: 20px;background-color:#E8E8E8">Ingresar Productos a Nota de Salida: </blockquote>
                     
                     <br>
                         <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
-                        data-bs-target="#entradaproductoAddModal"><i class="fas fa-graduation-cap"></i> Agregar Productos
+                        data-bs-target="#salidaproductoAddModal"><i class="fas fa-graduation-cap"></i> Agregar Productos
                         </button>
                     <br>
 
@@ -145,7 +145,9 @@ $aa = mysqli_fetch_assoc($query_run);
                                     <th style="width:20%;">Marca</th>
                                     <th style="width:20%;">Proveedor</th>
                                     <th style="width:10%;">Cantidad Ingresada</th>
-                                    <th style="width:20%"></th>
+                                    <th style="width:10%;">Precio Unitario</th>
+                                    <th style="width:10%;">Precio Total</th>
+                                    <th style="width:20%">Acciones</th>
                                 </tr>
                             </thead>
 
@@ -161,11 +163,11 @@ $aa = mysqli_fetch_assoc($query_run);
                             </style>
                             <tbody id="tablahover">
                                 <?php
-                                $query = "SELECT *, SUM(nuevoproducto.cantidadIngresadaAdd) as cant from nuevoproducto 
-                                inner join productos as p on p.idProducto = nuevoproducto.idProducto
+                                $query = "SELECT p.idProducto, p.producto, m.marca, prov.proveedor, pA.cantidadIngresadaAdd, p.precio, (p.precio*pA.cantidadIngresadaAdd) as Subtotal from nuevoproducto as pA
+                                inner join productos as p on p.idProducto = pA.idProducto
                                 inner join marca as m on m.idMarca = p.idMarca
                                 inner join proveedor as prov on prov.idProveedor = p.idProveedor
-                                group by nuevoproducto.idProducto, p.producto";
+                                order by p.precio asc";
                                 $query_run = mysqli_query($con, $query);
 
                                 if (mysqli_num_rows($query_run) > 0) {
@@ -187,11 +189,16 @@ $aa = mysqli_fetch_assoc($query_run);
                                             </td>
                                         
                                             <td>
-                                                <?= $row['cant'] ?>
+                                                <?= $row['cantidadIngresadaAdd'] ?>
                                             </td>
-
                                             <td>
-                                            <button type="button" value="<?= $row['idNuevoProducto']; ?>" class="deleteentradaprodBtn btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></button>
+                                                <?= $row['precio'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['Subtotal'] ?>
+                                            </td>
+                                            <td>
+                                            <button type="button" value="<?= $row['idProducto']; ?>" class="deletesalidaprodBtn btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></button>
                                             </td>
                                             
                                            
@@ -206,7 +213,7 @@ $aa = mysqli_fetch_assoc($query_run);
 
                    <div id="errorMessage" class="alert alert-warning d-none"></div>
 
-                    <button type="button" id="addreqentradaBtn" class="btn float-end btn-success"><i class="fas fa-graduation-cap"></i> Asignar Productos a Requerimiento
+                    <button type="button" id="addnotsalidaBtn" class="btn float-end btn-success"><i class="fas fa-graduation-cap"></i> Asignar Productos a Nota de Salida
                 </button>
                 <!--   Card de Admin -->
                 </form>
@@ -218,26 +225,26 @@ $aa = mysqli_fetch_assoc($query_run);
 <?php include_once 'footer.php'; ?>
 
 <script>
-    function muestra2(t2){
-        var mue=document.getElementById('txtidentificador2');
-        var idProducto = document.getElementById('idProducto');
+   function muestra2(t2){
+    var mue=document.getElementById('txtidentificador2');
+    var idProducto = document.getElementById('idProducto');
 
 
-        var texto2 = Number(t2.innerHTML);
-        idProducto.value= texto2;
-        console.log(texto2);
-    }
+    var texto2 = Number(t2.innerHTML);
+    idProducto.value= texto2;
+    console.log(texto2);
+     }
 
     
-    $(document).on('submit', '#saveentrada', function (e) {
+    $(document).on('submit', '#savesalida', function (e) {
         e.preventDefault();
 
         var formData = new FormData(this);
-        formData.append("save_entradaproducto", true);
+        formData.append("save_salidaproducto", true);
 
         $.ajax({
             type: "POST",
-            url: "../datos/entradaproductoDB.php",
+            url: "../datos/salidaproductoDB.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -250,8 +257,8 @@ $aa = mysqli_fetch_assoc($query_run);
 
                 } else if (res.status == 200) {
 
-                    $('#entradaproductoAddModal').modal('hide');
-                    $('#saveentrada')[0].reset();
+                    $('#salidaproductoAddModal').modal('hide');
+                    $('#savesalida')[0].reset();
                     $('#myTable').load(location.href + " #myTable");
 
                     alertify.set('notifier', 'position', 'top-right');
@@ -266,18 +273,18 @@ $aa = mysqli_fetch_assoc($query_run);
     });
 
 
-    $(document).on('click', '#addreqentradaBtn', function(e) {
+    $(document).on('click', '#addnotsalidaBtn', function(e) {
         e.preventDefault();
-        if (confirm('¿Estas seguro de enviar productos a requerimiento?')) {
+        if (confirm('¿Estas seguro de enviar productos a nota de salida?')) {
         var idNuevoProducto = $(this).val();
         //var idReq_Entrada = document.getElementById("idReq_Entrada").value;
         var idUsuario = document.getElementById('idUsuario').value;
 
         $.ajax({
             type: "POST",
-            url: "../datos/entradaproductoDB.php",
+            url: "../datos/salidaproductoDB.php",
             data:{
-                'save_enprod': true,
+                'save_saprod': true,
                 'idNuevoProducto': idNuevoProducto,
                 //'idReq_Entrada' : idReq_Entrada
                 'idUsuario': idUsuario,
@@ -295,7 +302,7 @@ $aa = mysqli_fetch_assoc($query_run);
                     alertify.success(res.message);
 
                     setTimeout(function() {
-                        window.location = 'req_entrada.php';
+                        window.location = 'not_salida.php';
                     });
                     /*   alertify.set('notifier', 'position', 'top-right');
                       alertify.success(res.message); */
@@ -311,7 +318,7 @@ $aa = mysqli_fetch_assoc($query_run);
     });
 
   
-    $(document).on('click', '.deleteentradaprodBtn', function (e) {
+    $(document).on('click', '.deletesalidaprodBtn', function (e) {
         e.preventDefault();
 
 
@@ -319,9 +326,9 @@ $aa = mysqli_fetch_assoc($query_run);
             var idNuevoProducto = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "../datos/entradaproductoDB.php",
+                url: "../datos/salidaproductoDB.php",
                 data: {
-                    'delete_entradaprod': true,
+                    'delete_salidaprod': true,
                     'idNuevoProducto': idNuevoProducto
                 },
                 success: function (response) {

@@ -26,7 +26,7 @@ require '../conexion.php';
                         <div class="mb-3 col-md-6">
                         <label for="">Producto:</label>
                             <input type="text" name="producto" class="form-control" />
-
+                            
                             <label for="">Marca:</label>
                             <?php
                             $query = "SELECT * FROM marca where estado in(1)";
