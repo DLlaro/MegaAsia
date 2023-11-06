@@ -46,6 +46,7 @@ $nomb = $row1['nombres'];
     <link rel="stylesheet" href="../css/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="../css/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-minicontrol-sidebar-slide-open layout-fixed layout-navbar-fixed">
@@ -120,7 +121,7 @@ $nomb = $row1['nombres'];
                                 <li class="nav-item ">
                                 <a href="producto.php" class="nav-link <?php if ($page == 'Productos') {
                                     echo 'active';
-                                } ?>"><i class="fa-solid fa-box"></i>
+                                } ?>"><i class="fa-solid fa-box-open"></i>
                                     <p>Gestión de Productos </p>
                                 </a>
                                 </li>
@@ -129,7 +130,7 @@ $nomb = $row1['nombres'];
                                 <li class="nav-item ">
                                 <a href="marca.php" class="nav-link <?php if ($page == 'Marca') {
                                     echo 'active';
-                                } ?>"><i class="fa-solid fa-box"></i>
+                                } ?>"><i class="fa-solid fa-box-open"></i>
                                     <p>Gestión de Marcas </p>
                                 </a>
                                 </li>
@@ -138,7 +139,7 @@ $nomb = $row1['nombres'];
                                 <li class="nav-item ">
                                 <a href="categoria.php" class="nav-link <?php if ($page == 'Categoria') {
                                     echo 'active';
-                                } ?>"><i class="fa-solid fa-box"></i>
+                                } ?>"><i class="fa-solid fa-box-open"></i>
                                     <p>Gestión de Categorias </p>
                                 </a>
                                 </li>
@@ -147,7 +148,7 @@ $nomb = $row1['nombres'];
                                 <li class="nav-item ">
                                 <a href="proveedor.php" class="nav-link <?php if ($page == 'Proveedor') {
                                     echo 'active';
-                                } ?>"><i class="fa-solid fa-user-tie"></i>
+                                } ?>"><i class="fa-solid fa-truck-field"></i>
                                     <p>Gestión de Proveedores </p>
                                 </a>
                                 </li>
@@ -166,7 +167,7 @@ $nomb = $row1['nombres'];
                             <li class="nav-item ">
                             <a href="req_entrada.php" class="nav-link <?php if ($page == 'Requerimiento_Entrada') {
                                 echo 'active';
-                            } ?>"><i class="fa-solid fa-dolly"></i>
+                            } ?>"> <i class="fa-solid fa-truck-ramp-box"></i>
                                 <p>Entrada de Productos</p>
                             </a>
                             </li>
