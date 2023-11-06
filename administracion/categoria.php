@@ -26,7 +26,7 @@ require '../conexion.php';
                             <label for="">Nombre de la Categoria:</label>
                             <input type="text" name="categoria"  class="form-control" />
                             <label for="">Descripcion:</label>
-                            <input type="text" name="descripcion" class="form-control" />
+                            <textarea name="descripcion" rows="3" class="form-control" style="resize: none"></textarea>
                         </div>
                         
 
@@ -60,7 +60,7 @@ require '../conexion.php';
                         </div>
                         <div class="mb-3">
                             <label for="">Descripcion:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" />
+                            <textarea name="descripcion" id="descripcion" rows="3" class="form-control" style="resize: none"></textarea>
                         </div>
 
                     </div>
