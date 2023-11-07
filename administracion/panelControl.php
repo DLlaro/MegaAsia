@@ -20,6 +20,12 @@ $contar_reqentrada = "SELECT COUNT(idReq_Entrada) as totalreqentrada FROM req_en
 $querycontar_reqentrada = $con->query($contar_reqentrada);
 $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
 
+//grafico circular 1
+$grafico01 = "SELECT count(*) as activos, (SELECT count(*) FROM req_entrada where estado = '0') as inactivos 
+FROM req_entrada where estado = '1';";
+$grafico_01 = $con->query($grafico01);
+$row_01 = $grafico_01->fetch_assoc();
+
 //contar total de requerimientos de salida
 
 
@@ -45,7 +51,7 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             <h3>
             <?= $totalproductos['totalproductos']; ?>
             </h3>
-            <p>Total de Productos</p>
+            <p><b>Total de Productos</b></p>
           </div>
           <div class="icon">
           <i class="fa-solid fa-box-open"></i>
@@ -67,7 +73,7 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             <h3>
             <?= $totalproveedores['totalproveedores']; ?>
             </h3>
-            <p>Proveedores Asociados</p>
+            <p><b>Proveedores Asociados</b></p>
           </div>
           <div class="icon">
           <i class="fa-solid fa-truck-field"></i>
@@ -89,7 +95,7 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             <h3>
             <?= $total_reqentrada['totalreqentrada']; ?>
             </h3>
-            <p>Req. de Entrada</p>
+            <p><b>Req. de Entrada</b></p>
           </div>
           <div class="icon">
           <i class="fa-solid fa-truck-ramp-box"></i>
@@ -111,7 +117,7 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             <h3>
 
             </h3>
-            <p>Req. de Salida</p>
+            <p><b>Req. de Salida</b></p>
           </div>
           <div class="icon">
           <i class="fa-solid fa-dolly"></i>
@@ -121,11 +127,11 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <!-- PIE CHART -->
-        <div class="card card-danger">
+        <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Diagrama 1</h3>
+            <h3 class="card-title">Seguimiento de Nota de Entrada</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -137,18 +143,18 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             </div>
           </div>
           <div class="card-body">
-            <canvas id="pieChart" style="min-height: 180px; height: 180px; max-height: 180px; max-width: 100%;"></canvas>
+          <canvas id="pieChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
         <!-- PIE CHART -->
-        <div class="card card-danger">
+        <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Diagrama 2</h3>
+            <h3 class="card-title">Seguimiento de Nota de Salida</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -160,51 +166,127 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
             </div>
           </div>
           <div class="card-body">
-            <canvas id="pieChart1" style="min-height: 180px; height: 180px; max-height: 180px; max-width: 100%;"></canvas>
+            <canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
           </div>
 
         </div>
 
       </div>
-      
-      <div class="col-md-4">
-        <!-- PIE CHART -->
-        <div class="card card-danger">
-          <div class="card-header">
-            <h3 class="card-title">Diagrama 3</h3>
 
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-body">
-            <canvas id="pieChart2" style="min-height: 180px; height: 180px; max-height: 180px; max-width: 100%;"></canvas>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-
-      <div class="col-md-12">
-        <div class="card card-warning">
-          <div class="card-header">
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-header" style="background-color: #424242; color: white">
             <div class="row">
-              <h3 class="card-title  justify-content-center text-center"> <B> Tabla</B></h3>
+              <h3 class="card-title">Últimos Productos Agregados</h3>
             </div>
           </div>
-          <div class="card-body">
-            <div class="chart">
-              <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+          <div class="card-body p-0" style="font-size:15px">
+            <div class="table-responsive">
+              <table class="table m-0 table-striped table-valign-middle">
+              <thead>
+                                <tr>
+                                    <th style="width:20%;">Producto</th>
+                                    <th style="width:15%;">Marca</th>
+                                    <th style="width:15%;">Categoria</th>
+                                    <th style="width:10%;">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablahover">
+                                <?php
+                                $query = "SELECT idProducto,producto,marca.marca,categoria.categoria, precio FROM `productos`
+                                INNER JOIN marca on marca.idMarca=productos.idMarca
+                                INNER JOIN categoria on categoria.idCategoria = productos.idCategoria
+                                ORDER by idProducto DESC LIMIT 0,10;";
+                                $query_run = mysqli_query($con, $query);
+
+                                if (mysqli_num_rows($query_run) > 0) {
+                                    foreach ($query_run as $row) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?= $row['producto'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['marca'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['categoria'] ?>
+                                            </td>
+                                           
+                                            <td>
+                                                <?= $row['precio'] ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+              </table>
+
             </div>
+          </div>
+          <div class="card-footer clearfix">
+          <a href="producto.php" class="btn btn-sm btn-warning float-left">Ver Todos los Productos</a>
           </div>
 
         </div>
       </div>
+      <div class="col-md-5">
+      <div class="card">
+          <div class="card-header" style="background-color: #424242; color: white">
+            <div class="row">
+              <h3 class="card-title">Últimos Usuarios Agregados</h3>
+            </div>
+          </div>
+          <div class="card-body p-0" style="font-size:15px">
+            <div class="table-responsive">
+              <table class="table m-0 table-striped table-valign-middle">
+              <thead>
+                                <tr>
+                                    <th style="width:20%;">Nombres</th>
+                                    <th style="width:25%;">Tipo de Administrador</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody id="tablahover">
+                                <?php
+                                $query = "SELECT nombres, administrador.admin as tipoadmin FROM `usuario`
+                                INNER JOIN administrador on administrador.idAdministrador=usuario.idAdministrador
+                                ORDER by idUsuario DESC LIMIT 0,10;";
+                                $query_run = mysqli_query($con, $query);
+
+                                if (mysqli_num_rows($query_run) > 0) {
+                                    foreach ($query_run as $row) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?= $row['nombres'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['tipoadmin'] ?>
+                                            </td>
+                                           
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+              </table>
+
+            </div>
+          </div>
+          <div class="card-footer clearfix">
+          <a href="usuario.php" class="btn btn-sm btn-warning float-left">Ver Todos los Usuarios</a>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
       
       <!--<div class="col-md-6">
         <div class="card card-success">
@@ -227,9 +309,9 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
 
 </section>
 
-
-
 <?php include_once 'footer.php'; ?>
+
+
 <script src="../css/plugins/chart.js/Chart.min.js"></script>
 
 
@@ -258,3 +340,30 @@ $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+<script>
+  /* GRAFICO DE CIRCULAR 02  */
+
+  var donutData1 = {
+    labels: [
+      'ACTIVOS',
+      'INACTIVOS',
+
+    ],
+    datasets: [{
+      data: [<?= $row_01['activos']; ?>, <?= $row_01['inactivos']; ?>],
+      backgroundColor: ['#FAAE16', '#dc3036'],
+    }]
+  }
+  var pieChartCanvas = $('#pieChart1').get(0).getContext('2d')
+  var pieData = donutData1;
+  var pieOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+  }
+
+  new Chart(pieChartCanvas, {
+    type: 'pie',
+    data: pieData,
+    options: pieOptions
+  })
+</script>
