@@ -54,7 +54,7 @@ if(isset($_GET['idNot_Salida']))
 
         $res = [
             'status' => 200,
-            'message' => 'Se encontró el Requerimiento Satisfactoriamente',
+            'message' => 'Se encontró la Nota de Salida correctamente',
             'data' => $nota_salida
         ];
         echo json_encode($res);
@@ -72,7 +72,7 @@ if(isset($_GET['idNot_Salida']))
 }
 
 
-if(isset($_POST['delete_reqEntrada']))
+if(isset($_POST['delete_notSalida']))
 {
     $idNot_Salida = mysqli_real_escape_string($con, $_POST['idNot_Salida']);
     
@@ -84,7 +84,7 @@ if(isset($_POST['delete_reqEntrada']))
     {
         $res = [
             'status' => 200,
-            'message' => 'El Requerimiento se eliminó Satisfactoriamente'
+            'message' => 'La Nota de Salida se eliminó Satisfactoriamente'
         ];
         echo json_encode($res);
         return;
@@ -94,7 +94,7 @@ if(isset($_POST['delete_reqEntrada']))
     {
         $res = [
             'status' => 500,
-            'message' => 'No se encontró el Requerimiento'
+            'message' => 'No se encontró la Nota'
         ];
         echo json_encode($res);
         return;
@@ -103,17 +103,17 @@ if(isset($_POST['delete_reqEntrada']))
 
 if(isset($_POST['restore_notSalida']))
 {
-    $idReq_Entrada= mysqli_real_escape_string($con, $_POST['idReq_Entrada']);
+    $idNot_Salida= mysqli_real_escape_string($con, $_POST['idNot_Salida']);
 
-    $query = "UPDATE req_entrada SET estado='1' 
-    WHERE idReq_Entrada='$idReq_Entrada'";
+    $query = "UPDATE nota_salida SET estado='1' 
+    WHERE idNot_Salida='$idNot_Salida'";
     $query_run = mysqli_query($con, $query);
 
     if($query_run)
     {
         $res = [
             'status' => 200,
-            'message' => 'Requerimiento restaurado Satisfactoriamente'
+            'message' => 'Nota de Salida restaurada Satisfactoriamente'
         ];
         echo json_encode($res);
         return;
@@ -122,7 +122,7 @@ if(isset($_POST['restore_notSalida']))
     {
         $res = [
             'status' => 500,
-            'message' => 'No se encontro Requerimiento'
+            'message' => 'No se encontro Nota de Salida'
         ];
         echo json_encode($res);
         return;

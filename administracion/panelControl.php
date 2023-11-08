@@ -20,16 +20,27 @@ $contar_reqentrada = "SELECT COUNT(idReq_Entrada) as totalreqentrada FROM req_en
 $querycontar_reqentrada = $con->query($contar_reqentrada);
 $total_reqentrada = $querycontar_reqentrada->fetch_assoc();
 
+//contar total notas de salida
+$contar_notsalida = "SELECT COUNT(idNot_Salida) as totalnotsalida FROM nota_salida where estado=1";
+$querycontar_notsalida = $con->query($contar_notsalida);
+$total_notsalida = $querycontar_notsalida->fetch_assoc();
+
 //grafico circular 1
 $grafico01 = "SELECT count(*) as activos, (SELECT count(*) FROM req_entrada where estado = '0') as inactivos 
 FROM req_entrada where estado = '1';";
 $grafico_01 = $con->query($grafico01);
 $row_01 = $grafico_01->fetch_assoc();
 
+//grafico donut 2
+$query = "SELECT total, idNot_Salida
+FROM nota_salida where estado = '1'";
+$query_run = mysqli_query($con, $query);
+$datos = array();
+foreach ($query_run as $row) {
+  $datos[]=$row;    
+}
+
 //contar total de requerimientos de salida
-
-
-
 ?>
 
 <link rel="stylesheet" href="../2_Negocio/css/css.css">
@@ -115,13 +126,16 @@ $row_01 = $grafico_01->fetch_assoc();
 
             ?>
             <h3>
-
+            <?= $total_notsalida['totalnotsalida']; ?>
             </h3>
             <p><b>Req. de Salida</b></p>
           </div>
           <div class="icon">
           <i class="fa-solid fa-dolly"></i>
           </div>
+          <a href="req_salida.php" class="small-box-footer">
+          Ver más <i class="fas fa-arrow-circle-right"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -154,7 +168,7 @@ $row_01 = $grafico_01->fetch_assoc();
         <!-- PIE CHART -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Seguimiento de Nota de Salida</h3>
+            <h3 class="card-title">Monto Total por Nota de Salida</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -365,5 +379,45 @@ $row_01 = $grafico_01->fetch_assoc();
     type: 'pie',
     data: pieData,
     options: pieOptions
+  })
+  /////////////////////////////////////Grafico donut
+  let datitos = []
+  datitos =  <?php echo json_encode($datos)?>;
+  let data = [];
+  let ids = [];
+  //arreglo de colores 
+  var colorArray = [ '#FF33FF', '#FFFF99', '#00B3E6', 
+		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+  for (var i in datitos) {
+    data.push(parseInt(datitos[i].total,10));
+    ids.push("NS "+datitos[i].idNot_Salida);
+  }
+  var donutData2 = {
+    labels: ids,
+    datasets: [{
+      data: data
+      ,
+      backgroundColor: colorArray,
+    }]
+  }
+  var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+  var pieData2 = donutData2;
+  var pieOptions2 = {
+    maintainAspectRatio: false,
+    responsive: true,
+  }
+
+  new Chart(pieChartCanvas2, {
+    type: 'doughnut',
+    data: pieData2,
+    options: pieOptions2
   })
 </script>

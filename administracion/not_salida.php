@@ -109,18 +109,12 @@ require '../conexion.php';
                                         </tbody>
                                     </table>
                                 </div>
-
-                                </div>
+                        </div>
 
                         <a href="not_salidanuevo.php"><button id="btnNuevaNot" type="button" class="btn float-end <?php if ($page == 'NuevaNotaSalida') {
                                 echo 'active'; 
                             } ?>" style="background-color: #dc3036; color:white"><i class="fa-solid fa-plus"></i> Crear Nota de Salida
                         </button></a>
-
-                        <!--<button type="button" class="btn float-end <?php if ($page == 'NuevaNotaSalida') {
-                                echo 'active';
-                            } ?>" style="background-color: #049ca4; color:white"> <a href="req_entradanuevo.php" style="text-decoration: none; color: white"> <i class="fas fa-graduation-cap"></i> Crear Requerimiento</a>
-                        </button>-->
 
                         <br>
 
@@ -128,11 +122,11 @@ require '../conexion.php';
                             style="width:100%; font-size: 12px;">
                             <thead style="background: #E8E8E8">
                                 <tr>
-                                    <th style="width:25%;">Fecha de Registro</th>                                 
+                                    <th style="width:20%;">Fecha de Registro</th>                                 
                                     <th style="width:30%;">Usuario Encargado</th>
-                                    <th style="width:10%;">Estado</th>
-                                    <th style="width:10%;">TOTAL</th>
-                                    <th style="width:50%;">Acciones</th>
+                                    <th style="width:20%;">Estado</th>
+                                    <th style="width:20%;">TOTAL</th>
+                                    <th style="width:20%;">Acciones</th>
                                 </tr>
                             </thead>
                             <style>
@@ -167,13 +161,10 @@ require '../conexion.php';
                                             <td>
                                                 <?php
                                                 if ($row['estado'] == 1) {
-                                                    echo '<span class="badge badge-success">PENDIENTE</span>';
-                                                }
-                                                if ($row['estado'] == 2) {
-                                                    echo '<span class="badge badge-info">NO ACTIVO</span>';
+                                                    echo '<span class="badge badge-success">REALIZADO</span>';
                                                 }
                                                 if ($row['estado'] == 0) {
-                                                    echo '<span class="badge badge-danger">APROBADO</span>';
+                                                    echo '<span class="badge badge-secondary">ELIMINADO</span>';
                                                 }
                                                 ?>
                                             </td>
@@ -185,7 +176,7 @@ require '../conexion.php';
                                                 <?php
                                                     if ($row['estado'] == 1) {
                                                     ?>    
-                                                <a href="reporte_req_entrada.php?rq_id=<?= $row['idNot_Salida']; ?>"target="_blank">
+                                                <a href="reporte_not_salida.php?ns_id=<?= $row['idNot_Salida']; ?>"target="_blank">
                                                         <button type="button" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
                                                     </a>
                                             

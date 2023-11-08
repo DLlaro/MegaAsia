@@ -31,71 +31,73 @@ $aa = mysqli_fetch_assoc($query_run);
                            <h6>Seleccione ID de producto: </h6>
                         <div class="container-fluid">
                          <div class="row">
-                        <div class="col-md-12">
-                        <table id="myTable2" style="font-size: 12px; width:100%"  class="table text-center" >
-                        <thead style="background: #C9C9C9">
-                            <tr>
-                                <th style="width:30%;">idProducto</th>
-                                <th style="width:20%;">Producto</th>
-                                <th style="width:20%;">Precio (S/.)</th>
-                                <th style="width:20%;">Stock Actual</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="tablahover">
-                                <?php
-                                $query = "SELECT p.idProducto,
-                                (SELECT CONCAT_WS(' ',pro.producto, 'marca',m.marca) 
-                                FROM productos as pro 
-                                 INNER join marca as m on m.idMarca=pro.idMarca 
-                                 WHERE pro.idProducto = p.idProducto) as Producto, p.precio, p.stock 
-                                FROM productos as p where estado=1;";
-                                $query_run = mysqli_query($con, $query);
-
-                                if (mysqli_num_rows($query_run) > 0) {
-                                    foreach ($query_run as $row) {
-                                        ?>
+                            <div class="col-md-12">
+                                <table id="myTable2" style="font-size: 12px; width:100%"  class="table text-center" >
+                                    <thead style="background: #C9C9C9">
                                         <tr>
-                                            <td id="txtidentificador2" style="cursor: pointer;" onclick="muestra2(this)">
-                                                <?=$row['idProducto']?>
-                                            </td>
-                                            <td>
-                                                <?=$row['Producto']?>
-                                            </td>
-                                            <td>
-                                                <?=$row['precio']?>
-                                            </td>
-                                            <td>
-                                                <?=$row['stock']?>
-                                            </td>
-
+                                            <th style="width:30%;">idProducto</th>
+                                            <th style="width:20%;">Producto</th>
+                                            <th style="width:20%;">Precio (S/.)</th>
+                                            <th style="width:20%;">Stock Actual</th>
                                         </tr>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                        <br>
-                        </div>
-                        </div>
-                        </div>
+                                    </thead>
 
+                                    <tbody id="tablahover">
+                                        <?php
+                                        $query = "SELECT p.idProducto,
+                                        (SELECT CONCAT_WS(' ',pro.producto, 'marca',m.marca) 
+                                        FROM productos as pro 
+                                        INNER join marca as m on m.idMarca=pro.idMarca 
+                                        WHERE pro.idProducto = p.idProducto) as Producto, p.precio, p.stock 
+                                        FROM productos as p where estado=1;";
+                                        $query_run = mysqli_query($con, $query);
+
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            foreach ($query_run as $row) {
+                                                ?>
+                                                <tr id="prueba" onclick="muestra2(this)" style="cursor: pointer;">
+                                                    <td>
+                                                        <?=$row['idProducto']?>
+                                                    </td>
+                                                    <td>
+                                                        <?=$row['Producto']?>
+                                                    </td>
+                                                    <td>
+                                                        <?=$row['precio']?>
+                                                    </td>
+                                                    <td>
+                                                        <?=$row['stock']?>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <br>
+                            </div>
+                        </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6" style="width:10rem;">
                                 <label for="">ID de Producto:</label>
-                                <input type="text" name="idProducto" id="idProducto" class="form-control" />
+                                <input type="text" name="idProducto" id="idProducto" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6" style="width:10rem;">
+                                <label for="">Stock:</label>
+                                <input type="text" name="stock" id="stock" class="form-control" readonly/>
                             </div>
                             <div class="col-md-6" style="width:10rem;">
                                 <label for="">Cantidad:</label>
-                                <input type="number" name="cantidadIngresada" id="cantidadIngresada" class="form-control" />
+                                <input type="number" name="cantidad" id="cantidad" class="form-control"/>
                             </div>
                         </div>
                         <div id="errorMessage" class="alert alert-warning d-none"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn" style="background-color: #dc3036; color:white">Guardar</button>
+                        <button id="enviar" type="submit" class="btn" style="background-color: #dc3036; color:white">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -129,7 +131,6 @@ $aa = mysqli_fetch_assoc($query_run);
                             </div>
                 
                         <blockquote style="font-size: 20px;background-color:#E8E8E8">Ingresar Productos a Nota de Salida: </blockquote>
-                    
                     <br>
                         <button type="button" class="btn float-end" style="background-color: #dc3036; color:white" data-bs-toggle="modal"
                         data-bs-target="#salidaproductoAddModal"><i class="fas fa-graduation-cap"></i> Agregar Productos
@@ -163,7 +164,7 @@ $aa = mysqli_fetch_assoc($query_run);
                             </style>
                             <tbody id="tablahover">
                                 <?php
-                                $query = "SELECT p.idProducto, p.producto, m.marca, prov.proveedor, pA.cantidadIngresadaAdd, p.precio, (p.precio*pA.cantidadIngresadaAdd) as Subtotal from nuevoproducto as pA
+                                $query = "SELECT p.idProducto, p.producto, m.marca, prov.proveedor, pA.cantidadSalida, p.precio, (p.precio*pA.cantidadSalida) as Subtotal from salidaproducto as pA
                                 inner join productos as p on p.idProducto = pA.idProducto
                                 inner join marca as m on m.idMarca = p.idMarca
                                 inner join proveedor as prov on prov.idProveedor = p.idProveedor
@@ -189,7 +190,7 @@ $aa = mysqli_fetch_assoc($query_run);
                                             </td>
                                         
                                             <td>
-                                                <?= $row['cantidadIngresadaAdd'] ?>
+                                                <?= $row['cantidadSalida'] ?>
                                             </td>
                                             <td>
                                                 <?= $row['precio'] ?>
@@ -210,7 +211,6 @@ $aa = mysqli_fetch_assoc($query_run);
                             </tbody>
                 </table>     
                    <br>
-
                    <div id="errorMessage" class="alert alert-warning d-none"></div>
 
                     <button type="button" id="addnotsalidaBtn" class="btn float-end btn-success"><i class="fas fa-graduation-cap"></i> Asignar Productos a Nota de Salida
@@ -225,17 +225,33 @@ $aa = mysqli_fetch_assoc($query_run);
 <?php include_once 'footer.php'; ?>
 
 <script>
-   function muestra2(t2){
-    var mue=document.getElementById('txtidentificador2');
-    var idProducto = document.getElementById('idProducto');
+    function muestra2(t2){
+        //var mue=document.getElementById('txtidentificador2');
+        var idProducto = document.getElementById('idProducto');
+        var stock= document.getElementById('stock');
+/*
+        var texto2 = Number(t2.innerHTML);
+        var texto3 = Number(t3.innerHTML);
 
+        console.log(texto2);
+        console.log(texto3); */
+        idProducto.value= $(t2).children('td')[0].innerText;;
+        stock.value=$(t2).children('td')[3].innerText;
+    }
+    document.getElementById("cantidad").oninput = function() {
+        var cantidad= document.getElementById('cantidad').value;
+        var stock= document.getElementById('stock').value;
 
-    var texto2 = Number(t2.innerHTML);
-    idProducto.value= texto2;
-    console.log(texto2);
-     }
-
-    
+        console.log(cantidad, stock);
+        var btn = document.getElementById('enviar');
+        if(cantidad > stock){
+            
+            btn.style.display = "none"; 
+        }
+        else{
+            btn.style.display = "inline"; 
+        }
+    }
     $(document).on('submit', '#savesalida', function (e) {
         e.preventDefault();
 
