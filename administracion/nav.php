@@ -156,7 +156,7 @@ $nomb = $row1['nombres'];
                                 <li class="nav-item ">
                                 <a href="inventario.php" class="nav-link <?php if ($page == 'Inventario') {
                                     echo 'active';
-                                } ?>"><i class="fa-solid fa-truck-field"></i>
+                                } ?>"><i class="fa-solid fa-boxes-stacked"></i>
                                     <p>Inventario</p>
                                 </a>
                                 </li>

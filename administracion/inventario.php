@@ -1,5 +1,5 @@
 <?php
-$page = 'Productos';
+$page = 'Inventario';
 
 include_once 'nav.php';
 require '../conexion.php';
@@ -14,7 +14,7 @@ require '../conexion.php';
                 <div class="card card-primary">
 
                     <div class="card-header" style="background-color:#dc3036">
-                        <h1 class="card-title" style="font-size: 23px;">Productos</h1>
+                        <h1 class="card-title" style="font-size: 23px;">Inventario</h1>
                     </div>
 
                     <div class="card-body">
