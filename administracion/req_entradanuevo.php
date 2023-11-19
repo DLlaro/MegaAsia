@@ -49,7 +49,7 @@ $aa = mysqli_fetch_assoc($query_run);
                                 FROM productos as pro 
                                  INNER join marca as m on m.idMarca=pro.idMarca 
                                  WHERE pro.idProducto = p.idProducto) as Producto, p.precio, p.stock 
-                                FROM productos as p where estado=1;";
+                                FROM productos as p ;";
                                 $query_run = mysqli_query($con, $query);
 
                                 if (mysqli_num_rows($query_run) > 0) {

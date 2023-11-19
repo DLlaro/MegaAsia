@@ -152,6 +152,14 @@ $nomb = $row1['nombres'];
                                     <p>Gestión de Proveedores </p>
                                 </a>
                                 </li>
+
+                                <li class="nav-item ">
+                                <a href="inventario.php" class="nav-link <?php if ($page == 'Inventario') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-truck-field"></i>
+                                    <p>Inventario</p>
+                                </a>
+                                </li>
                             
                        
 

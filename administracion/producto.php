@@ -62,21 +62,13 @@ require '../conexion.php';
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
                                 <?php endwhile; ?>
                             </select>
-
-
                         </div>
-
-
 
                         <div class="mb-3 col-md-6">
                         <label for="">Precio:</label>
                             <input type="text" name="precio" class="form-control" />
-                            <label for="">Stock:</label>
+                            <label for="">Stock Inicial:</label>
                             <input type="number" name="stock" class="form-control" />
-
-
-
-
                         </div>
 
 
@@ -147,19 +139,10 @@ require '../conexion.php';
 
                         </div>
 
-
-
                         <div class="mb-3 col-md-6">
                         <label for="">Precio:</label>
                             <input type="text" name="precio" id="precio" class="form-control" />
-                            <label for="">Stock:</label>
-                            <input type="number" name="stock" id="stock" class="form-control" />
-
-
-
-
                         </div>
-
 
                     </div>
                     <div class="modal-footer">
@@ -196,7 +179,6 @@ require '../conexion.php';
                                     <th style="width:15%;">idCategoria</th>
                                     <th style="width:15%;">idProveedor</th>
                                     <th style="width:20%;">Precio</th>
-                                    <th style="width:20%;">Stock</th>
                                     <th style="width:20%;">Estado</th>
                                     <th style="width:20%;"></th>
                                 </tr>
@@ -215,7 +197,7 @@ require '../conexion.php';
                             </style>
                             <tbody id="tablahover">
                                 <?php
-                                $query = "SELECT idProducto,producto,marca.marca,categoria.categoria,proveedor.proveedor,precio,stock,productos.estado FROM `productos`
+                                $query = "SELECT idProducto,producto,marca.marca,categoria.categoria,proveedor.proveedor,precio,productos.estado FROM `productos`
                                 INNER JOIN marca on marca.idMarca=productos.idMarca
                                 INNER JOIN categoria on categoria.idCategoria = productos.idCategoria
                                 INNER JOIN proveedor on proveedor.idProveedor=productos.idProveedor;";
@@ -242,9 +224,6 @@ require '../conexion.php';
                                             </td>
                                             <td>
                                                 <?= $row['precio'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $row['stock'] ?>
                                             </td>
                                             <td>
                                                 <?php
