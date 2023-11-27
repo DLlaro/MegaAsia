@@ -55,8 +55,8 @@ $aa = mysqli_fetch_assoc($query_run);
                                 if (mysqli_num_rows($query_run) > 0) {
                                     foreach ($query_run as $row) {
                                         ?>
-                                        <tr>
-                                            <td id="txtidentificador2" style="cursor: pointer;" onclick="muestra2(this)">
+                                        <tr id="txtidentificador2" style="cursor: pointer;" onclick="muestra2(this)">
+                                            <td>
                                                 <?=$row['idProducto']?>
                                             </td>
                                             <td>
@@ -83,7 +83,7 @@ $aa = mysqli_fetch_assoc($query_run);
                         <div class="row">
                         <div class="col-md-6" style="width:10rem;">
                             <label for="">ID de Producto:</label>
-                            <input type="text" name="idProducto" id="idProducto" class="form-control" />
+                            <input type="text" name="idProducto" id="idProducto" class="form-control"  readonly/>
                         </div>
                         <div class="col-md-6" style="width:10rem;">
                             <label for="">Cantidad:</label>
@@ -118,7 +118,7 @@ $aa = mysqli_fetch_assoc($query_run);
                             <!--<input type="hidden" name="idReq_Entrada" id="idReq_Entrada" value="<?php //echo $idReq_Entrada;?>" class="form-control" />-->
                             <div class="mb-3" style="width:25rem;">
                             <?php 
-                            $query = "SELECT * FROM usuario where usuarioEstado in(1);";
+                            $query = "SELECT * FROM usuario where usuarioEstado in(1) and idAdministrador = 3;";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idUsuario" id="idUsuario"  class="form-control">
                                 <?php
@@ -219,13 +219,9 @@ $aa = mysqli_fetch_assoc($query_run);
 
 <script>
     function muestra2(t2){
-        var mue=document.getElementById('txtidentificador2');
         var idProducto = document.getElementById('idProducto');
-
-
-        var texto2 = Number(t2.innerHTML);
-        idProducto.value= texto2;
-        console.log(texto2);
+        
+        idProducto.value= $(t2).children('td')[0].innerText;;
     }
 
     

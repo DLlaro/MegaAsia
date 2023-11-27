@@ -24,18 +24,18 @@ require '../conexion.php';
 
                         <div class="mb-3">
                             <label for="">Correo:</label>
-                            <input type="text" name="usuariocorreo" id="usuariocorreo" class="form-control" />
+                            <input type="text" name="usuariocorreo"  class="form-control" />
                             <label for="">Contraseña:</label>
-                            <input type="text" name="contraseña" id="contraseña" class="form-control" />
+                            <input type="text" name="contraseña" class="form-control" />
                         </div>
                         <div class="mb-3">
                             <label for="">Nombres:</label>
-                            <input type="text" name="nombres" id="nombres" class="form-control" />
+                            <input type="text" name="nombres"  class="form-control" />
                             <label for="">Tipo Administrador:</label>
                             <?php
                             $query = "SELECT * FROM administrador where estado in(1)";
                             $query_run = mysqli_query($con, $query); ?>
-                            <select name="idAdministrador" id="idAdministrador" class="form-control">
+                            <select name="idAdministrador" class="form-control">
                                 <?php
                                 while ($ver = mysqli_fetch_row($query_run)): ?>
                                     <option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
