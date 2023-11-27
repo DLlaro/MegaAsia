@@ -129,6 +129,35 @@ if(isset($_POST['restore_reqEntrada']))
     }
 }
 
+if (isset($_GET['nuevoq'])) {
+    $nuevoq = mysqli_real_escape_string($con, $_GET['nuevoq']);
+
+    $query2 = "DELETE FROM nuevoproducto";
+    $query_run2 = mysqli_query($con, $query2);
+
+    $query = "SELECT * FROM req_entrada";
+    $query_run = mysqli_query($con, $query);
+
+    if ($query_run) {
+        $requerimiento = mysqli_fetch_array($query_run);
+
+        $res = [
+            'status' => 200,
+            'message' => 'REQUERIMIENTO encontrado Satisfactoriamente',
+            'data' => $requerimiento
+        ];
+        echo json_encode($res);
+        return;
+    } else {
+        $res = [
+            'status' => 404,
+            'message' => 'REQUERIMIENTO no encontrado'
+        ];
+        echo json_encode($res);
+        return;
+    }
+}
+
 
 
 ?>

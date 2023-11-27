@@ -16,7 +16,7 @@ require '../conexion.php';
                 <div class="card card-primary">
 
                     <div class="card-header">
-                        <h1 class="card-title" style="font-size: 23px;">Requerimiento de Entrada</h1>
+                        <h1 class="card-title" style="font-size: 23px;">Requerimiento de Entrada General</h1>
                     </div>
 
                     <div class="card-body">
@@ -111,10 +111,10 @@ require '../conexion.php';
 
                                 </div>
 
-                        <a href="req_entradanuevo.php"><button id="btnNuevoReq" type="button" class="btn float-end <?php if ($page == 'NuevoRequerimiento') {
+                        <button id="nuevoReqBtn" type="button" class="btn float-end <?php if ($page == 'NuevoRequerimiento') {
                                 echo 'active'; 
                             } ?>" style="background-color: #dc3036; color:white"><i class="fa-solid fa-plus"></i> Crear Requerimiento Nuevo
-                        </button></a>
+                        </button>
 
                         <!--<button type="button" class="btn float-end <?php if ($page == 'NuevoRequerimiento') {
                                 echo 'active';
@@ -224,8 +224,25 @@ require '../conexion.php';
 </section>
 
 <?php include_once 'footer.php'; ?>
-
 <script>
+       /*   NUEVO REQUERIMIENTO */
+       $(document).on('click', '#nuevoReqBtn', function() {
+        var nuevoq = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "../datos/req_entradaDB.php?nuevoq=" + nuevoq,
+            success: function(response) {
+
+                var res = jQuery.parseJSON(response);
+                if (res.status == 200) {
+                    window.location.href = "req_entradanuevo.php";
+
+                } else {
+                    alert(res.message);
+                }
+            }
+        });
+    });
 
     $(document).on('submit', '#save_reqEntrada', function (e) {
         e.preventDefault();

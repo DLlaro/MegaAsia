@@ -181,6 +181,19 @@ $nomb = $row1['nombres'];
                             </li>
 
                             </ul>
+
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                            <a href="req_entradaxfecha.php" class="nav-link <?php if ($page == 'Req_EntradaxFecha') {
+                                echo 'active';
+                            } ?>"> <i class="fa-solid fa-calendar-days"></i>
+                                <p>Entradas por Fecha</p>
+                            </a>
+                            </li>
+
+                            </ul>
+
+
                             <ul class="nav nav-treeview">
                             <li class="nav-item ">
                             <a href="not_salida.php" class="nav-link <?php if ($page == 'Nota_Salida') {
@@ -191,6 +204,19 @@ $nomb = $row1['nombres'];
                         </li>
 
                             </ul>
+
+
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                            <a href="not_salidaxfecha.php" class="nav-link <?php if ($page == 'Not_SalidaxFecha') {
+                                echo 'active';
+                            } ?>"> <i class="fa-solid fa-calendar-days"></i>
+                                <p>Salidas por Fecha</p>
+                            </a>
+                            </li>
+
+                            </ul>
+
                         </li>
 
                         <?php if ($idAdministrador == '1' || $idAdministrador=='2') {

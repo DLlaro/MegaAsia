@@ -111,10 +111,10 @@ require '../conexion.php';
                                 </div>
                         </div>
 
-                        <a href="not_salidanuevo.php"><button id="btnNuevaNot" type="button" class="btn float-end <?php if ($page == 'NuevaNotaSalida') {
+                        <button id="btnNuevaNot" type="button" class="btn float-end <?php if ($page == 'NuevaNotaSalida') {
                                 echo 'active'; 
                             } ?>" style="background-color: #dc3036; color:white"><i class="fa-solid fa-plus"></i> Crear Nota de Salida
-                        </button></a>
+                        </button>
 
                         <br>
 
@@ -219,6 +219,24 @@ require '../conexion.php';
 <?php include_once 'footer.php'; ?>
 
 <script>
+           /*   NUEVO REQUERIMIENTO */
+        $(document).on('click', '#btnNuevaNot', function() {
+        var nuevoq = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "../datos/not_salidaDB.php?nuevoq=" + nuevoq,
+            success: function(response) {
+
+                var res = jQuery.parseJSON(response);
+                if (res.status == 200) {
+                    window.location.href = "not_salidanuevo.php";
+
+                } else {
+                    alert(res.message);
+                }
+            }
+        });
+    });
 
     $(document).on('submit', '#save_notSalida', function (e) {
         e.preventDefault();
