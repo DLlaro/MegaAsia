@@ -157,7 +157,7 @@ $nomb = $row1['nombres'];
                                 <a href="inventario.php" class="nav-link <?php if ($page == 'Inventario') {
                                     echo 'active';
                                 } ?>"><i class="fa-solid fa-boxes-stacked"></i>
-                                    <p>Inventario</p>
+                                    <p>Inventario General</p>
                                 </a>
                                 </li>
                             
@@ -221,6 +221,14 @@ $nomb = $row1['nombres'];
 
                         <?php if ($idAdministrador == '1' || $idAdministrador=='2') {
                             ?>
+
+                                <li class="nav-item ">
+                                <a href="kpi1.php" class="nav-link <?php if ($page == 'KPI') {
+                                    echo 'active';
+                                } ?>"><i class="fa-solid fa-chart-column"></i>
+                                    <p>KPI Requerimientos x Trabajador</p>
+                                </a>
+                            </li>
 
                             <li class="nav-item ">
                                 <a href="usuario.php" class="nav-link <?php if ($page == 'Usuario') {

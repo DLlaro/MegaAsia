@@ -120,7 +120,7 @@ $aa = mysqli_fetch_assoc($query_run);
                             <!--<input type="hidden" name="idReq_Entrada" id="idReq_Entrada" value="<?php //echo $idReq_Entrada;?>" class="form-control" />-->
                             <div class="mb-3" style="width:25rem;">
                             <?php 
-                            $query = "SELECT * FROM usuario where usuarioEstado in(1);";
+                            $query = "SELECT * FROM usuario where usuarioEstado in(1) and idAdministrador=3;";
                             $query_run = mysqli_query($con, $query); ?>
                             <select name="idUsuario" id="idUsuario"  class="form-control">
                                 <?php

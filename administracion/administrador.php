@@ -25,7 +25,7 @@ require '../conexion.php';
 
                         <div class="mb-3">
                             <label for="">Administrador:</label>
-                            <input type="text" name="admin" id="admin" class="form-control" />
+                            <input type="text" name="admin"  class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">
