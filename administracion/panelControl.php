@@ -26,7 +26,7 @@ $querycontar_notsalida = $con->query($contar_notsalida);
 $total_notsalida = $querycontar_notsalida->fetch_assoc();
 
 //grafico circular 1
-$grafico01 = "SELECT count(*) as activos, (SELECT count(*) FROM req_entrada where estado = '0') as inactivos 
+$grafico01 = "SELECT count(*) as COMPLETADOS, (SELECT count(*) FROM req_entrada where estado = '0') as ELIMINADOS 
 FROM req_entrada where estado = '1';";
 $grafico_01 = $con->query($grafico01);
 $row_01 = $grafico_01->fetch_assoc();
@@ -359,12 +359,12 @@ foreach ($query_run as $row) {
 
   var donutData1 = {
     labels: [
-      'ACTIVOS',
-      'INACTIVOS',
+      'COMPLETADOS',
+      'ELIMINADOS',
 
     ],
     datasets: [{
-      data: [<?= $row_01['activos']; ?>, <?= $row_01['inactivos']; ?>],
+      data: [<?= $row_01['COMPLETADOS']; ?>, <?= $row_01['ELIMINADOS']; ?>],
       backgroundColor: ['#FAAE16', '#dc3036'],
     }]
   }

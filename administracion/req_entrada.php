@@ -166,7 +166,7 @@ require '../conexion.php';
                                                 <?php
                                                 if ($row['estado'] == 1) {
 
-                                                    echo '<span class="badge badge-success">ACTIVO</span>';
+                                                    echo '<span class="badge badge-success">COMPLETADO</span>';
                                                 }
                                                 if ($row['estado'] == 2) {
                                                     echo '<span class="badge badge-info">NO ACTIVO</span>';

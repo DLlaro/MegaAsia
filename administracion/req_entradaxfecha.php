@@ -87,7 +87,7 @@ require '../conexion.php';
                                         <?php
                                         $query = "SELECT req_entrada.idReq_Entrada as codigo, usuario.nombres, req_entrada.fecha, req_entrada.estado from req_entrada 
                                         INNER JOIN usuario on usuario.idUsuario = req_entrada.idUsuario
-                                        INNER JOIN det_req_entrada on det_req_entrada.idReq_Entrada = req_entrada.idReq_Entrada
+                                       
                                         WHERE req_entrada.fecha is not null and (req_entrada.fecha BETWEEN '$inicio' and '$fin');";
                                         $query_run = mysqli_query($con, $query);
 
