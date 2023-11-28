@@ -86,9 +86,8 @@ require '../conexion.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT nota_salida.idNot_Salida as codigo, usuario.nombres, nota_salida.fecha, nota_salida.estado, det_not_salida.precTotal from nota_salida 
+                                        $query = "SELECT nota_salida.idNot_Salida as codigo, usuario.nombres, nota_salida.fecha, nota_salida.estado, nota_salida.Total from nota_salida 
                                         INNER JOIN usuario on usuario.idUsuario = nota_salida.idUsuario
-                                        INNER JOIN det_not_salida on det_not_salida.idNot_Salida = nota_salida.idNot_Salida
                                         WHERE nota_salida.fecha is not null and (nota_salida.fecha BETWEEN '$inicio' and '$fin');";
                                         $query_run = mysqli_query($con, $query);
 
@@ -112,7 +111,7 @@ require '../conexion.php';
                                                     echo '<span class="badge badge-danger">ELIMINADO</span>';
                                                 }
                                                 ?></td>
-                                                <td><?= $row['precTotal'] ?></td>
+                                                <td><?= $row['Total'] ?></td>
                                        
                                                      <td>
 
