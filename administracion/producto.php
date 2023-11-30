@@ -142,6 +142,8 @@ require '../conexion.php';
                         <div class="mb-3 col-md-6">
                         <label for="">Precio:</label>
                             <input type="text" name="precio" id="precio" class="form-control" />
+                            <label for="">Stock Inicial:</label>
+                            <input type="number" name="stock" id="stock" class="form-control" />
                         </div>
 
                     </div>
