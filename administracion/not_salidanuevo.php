@@ -227,15 +227,16 @@ $aa = mysqli_fetch_assoc($query_run);
 <script>
     function muestra2(t2){
         //var mue=document.getElementById('txtidentificador2');
-        var idProducto = document.getElementById('idProducto');
-        var stock= document.getElementById('stock');
+        var idProducto = document.getElementById("idProducto");
+        var stock= document.getElementById("stock");
 /*
         var texto2 = Number(t2.innerHTML);
         var texto3 = Number(t3.innerHTML);
 
         console.log(texto2);
         console.log(texto3); */
-        idProducto.value= $(t2).children('td')[0].innerText;;
+        idProducto.value= $(t2).children('td')[0].innerText;
+        console.log()
         stock.value=$(t2).children('td')[3].innerText;
     }
     document.getElementById("cantidad").oninput = function() {
@@ -244,7 +245,7 @@ $aa = mysqli_fetch_assoc($query_run);
 
         console.log(cantidad, stock);
         var btn = document.getElementById('enviar');
-        if(cantidad > stock){
+        if(parseInt(cantidad) > parseInt(stock)){
             
             btn.style.display = "none"; 
         }
